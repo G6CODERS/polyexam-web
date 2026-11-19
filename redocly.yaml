@@ -1,0 +1,9 @@
+extends:
+  - recommended
+
+rules:
+  operation-operationId: error
+  operation-summary: error
+  no-unused-components: error
+  no-server-example.com: off
+  security-defined: off

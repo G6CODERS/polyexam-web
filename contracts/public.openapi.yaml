@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: PolyExam Public API
+  version: 0.1.0
+  description: |
+    Student-facing API contract for PolyExam v2.
+
+    This contract is public by design. It contains no secrets and no
+    admin/internal endpoints. Admin behavior lives in the private Filament panel
+    in G6CODERS/polyexam-api.
+
+    The backend pins this file by commit SHA in `contracts.lock`; the frontend
+    generates its TypeScript client and MSW mocks from it.
+servers:
+  - url: http://localhost:8000/api
+    description: Local Laravel API
+  - url: https://api.polyexam.local/api
+    description: Production placeholder — replace when hosting is chosen
+tags:
+  - name: System
+    description: Liveness and contract plumbing
+paths:
+  /v1/health:
+    get:
+      operationId: getHealth
+      summary: API health
+      description: Lightweight liveness probe used by the frontend, CI, and synthetic monitors.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '429':
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '503':
+          description: Service is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+components:
+  schemas:
+    Health:
+      type: object
+      required:
+        - status
+        - service
+        - version
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+          example: ok
+        service:
+          type: string
+          example: polyexam-api
+        version:
+          type: string
+          example: 0.1.0
+    Problem:
+      type: object
+      description: RFC 9457 Problem Details
+      required:
+        - title
+        - status
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://api.polyexam.example/problems/unavailable
+        title:
+          type: string
+          example: Service unavailable
+        status:
+          type: integer
+          example: 503
+        detail:
+          type: string
+        instance:
+          type: string
+          format: uri

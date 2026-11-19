@@ -1,0 +1,23 @@
+name: Contract Breaking
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-breaking:
+    name: contract-breaking
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect breaking OpenAPI changes
+        uses: oasdiff/oasdiff-action/breaking@v0
+        with:
+          base: origin/${{ github.base_ref }}:contracts/public.openapi.yaml
+          revision: HEAD:contracts/public.openapi.yaml
+          fail-on: WARN
