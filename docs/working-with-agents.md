@@ -34,7 +34,8 @@ Local hooks are installed by `npm ci`; they block env files, hand-edited
 generated code, and non-formatted staged files. They can be bypassed with
 `--no-verify`, but CI is the hard gate. OpenCode users also get read/shell
 denials from `opencode.jsonc`; Claude Code users get `.env` read denials from
-`.claude/settings.json`.
+`.claude/settings.json`. These agent permission files are best-effort local
+guardrails, not a security boundary.
 
 ## Runtime introspection
 
@@ -73,10 +74,13 @@ Do not use emphasis (“IMPORTANT”, all caps) as a substitute for enforcement.
 
 - Conventional Commits title (`pr-title` check).
 - ≤400 code lines and ≤20 code files (`pr-size` check).
-- `size:large` label only with a written justification.
+- `size:large` label only with a non-empty `## Size justification` section in
+  the PR body; the check rejects an empty one.
 - One approval, CODEOWNERS review, and all required checks.
 - Required checks include `ci-success`, `pr-size`, `pr-title`,
   `contract-breaking`, `security-secrets`, and `security-dependencies`.
+- The ruleset protects the default branch. Stacked/feature branches rely on
+  local hooks and the no-force-push review policy until they merge.
 - Squash merge only; no force push; no direct `main` pushes.
 
 ## Metrics and evals
@@ -89,3 +93,13 @@ review comments, docs drift, and agent task success.
 Agents must not read `.env` files, force-push, or run destructive git commands.
 Use `opencode.jsonc` permissions when using OpenCode. Report vulnerabilities
 privately via `SECURITY.md`.
+
+## Sources
+
+- [AGENTS.md standard](https://agents.md/)
+- [Claude Code memory and AGENTS.md](https://code.claude.com/docs/en/memory)
+- [OpenAI Codex AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
+- [GitHub Copilot repository instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
+- [Cursor rules](https://cursor.com/docs/context/rules)
+- [OpenCode rules](https://opencode.ai/docs/rules/) and [skills](https://opencode.ai/docs/skills/)
+- [Vercel: AGENTS.md vs skills](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals)

@@ -5,8 +5,8 @@ Run them in a fresh worktree/session with no extra hints.
 
 ## Tasks
 
-1. **Add a route:** add a `/health` page that uses the generated client and
-   renders loading, error, and success states.
+1. **Add a component test:** add a jsdom test for an existing component (for
+   example `HealthClient`) covering the error state and the success state.
 2. **Change the contract:** add one additive operation with examples, regenerate
    the client/mocks, and update a test.
 3. **Fix a seeded bug:** a component renders the wrong empty state; write a

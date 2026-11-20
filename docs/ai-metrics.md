@@ -15,6 +15,18 @@ thing at a time.
 | Generated edits            | Edits outside contract PRs        | 0                  |
 | Time-to-green              | Small task start → green PR       | <15 min            |
 
+## Baseline (2026-11-20, local Linux)
+
+| Measurement           | Value                                              |
+| --------------------- | -------------------------------------------------- |
+| `npm run verify:fast` | 8.89 s                                             |
+| `npm run verify`      | 13.00 s                                            |
+| Vitest                | 6 files, 16 tests                                  |
+| Playwright            | 2 tests                                            |
+| `docs:check`          | 44 Markdown files, 46 links, 107 paths, 88 scripts |
+| `AGENTS.md`           | 120 lines                                          |
+| CI `ci-success`       | required by the active ruleset                     |
+
 ## Notes
 
 - Count substantive review comments, not bot noise.

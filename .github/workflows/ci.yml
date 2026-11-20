@@ -78,6 +78,14 @@ jobs:
         env:
           NEXT_PUBLIC_APP_NAME: PolyExam
           NEXT_PUBLIC_API_URL: http://localhost:8000/api
+          NEXT_PUBLIC_MSW_ENABLED: 'false'
+      - name: Ensure MSW and Faker are excluded from production
+        run: |
+          if grep -R -q -E "setupWorker|mockServiceWorker|@faker-js/faker|getPolyExamPublicAPIMock" .next/static .next/server; then
+            echo "MSW or Faker leaked into the production build."
+            exit 1
+          fi
+          echo "Production bundle excludes MSW and Faker."
 
   contract-lint:
     name: contract-lint

@@ -30,7 +30,7 @@ npm run e2e -- e2e/smoke.spec.ts         # one spec
 - Node/Vitest: `src/mocks/server.ts` + `vitest.setup.ts`.
 - Overrides: `src/mocks/handlers.ts`.
 - Use contract examples and a fixed Faker seed; never use real data.
-- `onUnhandledRequest: 'error'` in tests so missing handlers fail loudly.
+- `onUnhandledFrame: 'error'` in tests so missing handlers fail loudly.
 
 ## Rules
 
@@ -44,5 +44,6 @@ npm run e2e -- e2e/smoke.spec.ts         # one spec
 
 ## CI
 
-`npm run verify` is the local gate. CI adds format, docs, contract, and e2e
-checks. A red check is the source of truth, not a local claim.
+`npm run verify` is the local gate and includes format, docs, lint, typecheck,
+tests, and build. CI adds contract and e2e checks plus the security workflows.
+A red check is the source of truth, not a local claim.

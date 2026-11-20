@@ -14,7 +14,9 @@ vendor-specific files causes drift; prompt-only rules are not enforceable.
 - Deep knowledge lives in `docs/` and is loaded on demand.
 - Hard rules are enforced by scripts, CI, CODEOWNERS, hooks, and permissions.
 - Generated code is fenced with nested `AGENTS.md`, `.gitattributes`, and CI.
-- PRs must be small, use Conventional Commits, and include verification evidence.
+- PRs must be small, use Conventional Commits, include verification evidence,
+  and provide a written size justification when the `size:large` exception is
+  used.
 - Framework knowledge is retrieved from version-matched docs, not model memory.
 
 ## Consequences

@@ -7,6 +7,7 @@ const labels = (process.env.PR_LABELS ?? '')
   .split(',')
   .map((label) => label.trim())
   .filter(Boolean);
+const body = process.env.PR_BODY ?? '';
 
 const MAX_CODE_LINES = 400;
 const MAX_CODE_FILES = 20;
@@ -74,6 +75,12 @@ if (process.env.GITHUB_STEP_SUMMARY) {
 
 const isLarge = codeLines > MAX_CODE_LINES || codeFiles > MAX_CODE_FILES;
 const hasOverride = labels.includes('size:large');
+const justificationMatch = body.match(
+  /#{2,3}\s+Size justification\s*\n+([\s\S]*?)(?=\n#{1,3}\s|$)/i,
+);
+const justification = (justificationMatch?.[1] ?? '')
+  .replace(/\s+/g, ' ')
+  .trim();
 
 if (isLarge && !hasOverride) {
   console.error(
@@ -86,8 +93,22 @@ if (isLarge && !hasOverride) {
   process.exit(1);
 }
 
+if (isLarge && hasOverride && justification.length < 20) {
+  console.error(
+    [
+      '',
+      'The `size:large` label requires a written justification.',
+      'Add a `## Size justification` section to the PR body explaining why the',
+      'change cannot be split into reviewable PRs.',
+    ].join('\n'),
+  );
+  process.exit(1);
+}
+
 if (isLarge && hasOverride) {
-  console.log('\nLarge PR accepted because the `size:large` label is present.');
+  console.log(
+    '\nLarge PR accepted because the `size:large` label and a justification are present.',
+  );
 }
 
 console.log('\npr-size passed.');

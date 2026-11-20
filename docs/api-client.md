@@ -15,10 +15,10 @@ const response = await getHealth();
 Those requests go to the Next.js BFF/route handlers, which own the Laravel
 session and secrets. The browser never holds a Laravel token.
 
-## Server Components and Server Actions
+## Server Components and Server Actions (target)
 
-Server code calls Laravel directly through a server-only client with
-`API_BASE_URL` and a Bearer token:
+Auth is not implemented yet. When it is, server code will call Laravel directly
+through a server-only client with `API_BASE_URL` and a Bearer token:
 
 ```ts
 import 'server-only';

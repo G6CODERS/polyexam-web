@@ -52,7 +52,7 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 ## Map
 
 - `src/app/` — routes, layouts, pages, route handlers.
-- `src/components/` — shared UI.
+- `src/components/` — shared UI (planned; use an ADR before building it).
 - `src/lib/` — API client, env, auth, utilities.
 - `src/lib/api/` — **generated** Orval client/models/mocks; never edit.
 - `src/mocks/` — MSW runtime.
@@ -74,7 +74,7 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 - Local hooks block env files, hand-edited generated code, and unformatted
   staged files. Do not bypass with `--no-verify`.
 - Keep PRs reviewable: ≤400 code lines and ≤20 code files. Add `size:large`
-  only with a written justification.
+  only with a `## Size justification` section in the PR body.
 
 ## Conventions
 

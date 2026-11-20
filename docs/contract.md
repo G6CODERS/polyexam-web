@@ -27,7 +27,10 @@ npm run contract:lint    # Redocly lint
 ```
 
 `contract:check` runs the generator and fails if `src/lib/api` is dirty or
-untracked. That catches both stale output and hand-edited generated files.
+untracked. That catches both stale output and hand-edited generated files. It
+compares the working tree to `HEAD`, so commit the contract and generated
+output before running it locally. Do not run it concurrently with tests;
+Orval cleans the output directory while regenerating.
 
 ## Change process
 
@@ -45,8 +48,9 @@ untracked. That catches both stale output and hand-edited generated files.
 
 - No admin/internal endpoints in this file. Filament admin is private.
 - No real student data, secrets, or paid content in examples or fixtures.
-- Breaking changes need an explicit label/approval and a deprecation or version
-  decision.
+- Breaking changes are blocked by the required `contract-breaking` check. A
+  breaking change needs a version/deprecation plan and an explicit maintainer
+  ruleset change; do not rely on a label alone.
 - Keep operation IDs stable; the client and mocks depend on them.
 - Every operation needs `operationId`, `summary`, `description`, `tags`, and
   examples.

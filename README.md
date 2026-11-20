@@ -50,8 +50,8 @@ npm run lint             # ESLint (zero warnings)
 npm run typecheck        # TypeScript check
 npm run test             # Vitest
 npm run test:watch       # Vitest watch
-npm run verify           # lint + typecheck + test + build
-npm run verify:fast      # lint + typecheck + test
+npm run verify           # format + docs + lint + typecheck + test + build
+npm run verify:fast      # format + docs + lint + typecheck + test
 npm run verify:full      # verify + contract check + e2e
 npm run contract         # regenerate client + MSW from the OpenAPI contract
 npm run contract:check   # regenerate and fail on generated drift
@@ -71,12 +71,8 @@ npx playwright install chromium
 
 ## For AI agents
 
-- Read [`AGENTS.md`](AGENTS.md) first.
-- Use [`docs/index.md`](docs/index.md) to find the right deep dive.
-- Run `npm run verify` before opening a pull request.
-- Never edit `src/lib/api/generated*` or `src/lib/api/model/**`; run
-  `npm run contract` instead.
-- Keep changes small and reviewable.
+Read [`AGENTS.md`](AGENTS.md) first, then [`docs/index.md`](docs/index.md) for
+the relevant deep dive. Run `npm run verify` before opening a pull request.
 
 ## API contract
 

@@ -34,8 +34,10 @@ const packageJson = JSON.parse(
 );
 const scripts = new Set(Object.keys(packageJson.scripts ?? {}));
 const brokenLinks = [];
+const missingPaths = [];
 const missingScripts = [];
 let linkChecks = 0;
+let pathChecks = 0;
 let scriptChecks = 0;
 
 for (const file of markdownFiles) {
@@ -61,6 +63,24 @@ for (const file of markdownFiles) {
       missingScripts.push({ file: relative(root, file), script: match[1] });
     }
   }
+
+  for (const match of text.matchAll(
+    /`((?:src|docs|contracts|e2e|scripts|public|\.github)\/[^`\s]+)`/g,
+  )) {
+    const candidate = match[1].replace(/[.,;:]+$/, '');
+    if (
+      candidate.includes('<') ||
+      candidate.includes('*') ||
+      candidate.includes('...')
+    ) {
+      continue;
+    }
+
+    pathChecks += 1;
+    if (!existsSync(resolve(root, candidate))) {
+      missingPaths.push({ file: relative(root, file), path: candidate });
+    }
+  }
 }
 
 const agentsPath = join(root, 'AGENTS.md');
@@ -70,6 +90,10 @@ const errors = [];
 
 for (const link of brokenLinks) {
   errors.push(`${link.file}: broken internal link -> ${link.target}`);
+}
+
+for (const missing of missingPaths) {
+  errors.push(`${missing.file}: missing referenced path -> ${missing.path}`);
 }
 
 for (const missing of missingScripts) {
@@ -106,7 +130,7 @@ console.log(
   [
     'docs:check passed.',
     `- ${markdownFiles.length} Markdown files`,
-    `- ${linkChecks} internal links, ${scriptChecks} npm script references`,
+    `- ${linkChecks} internal links, ${pathChecks} backticked paths, ${scriptChecks} npm script references`,
     `- AGENTS.md: ${agentsLines} lines`,
   ].join('\n'),
 );

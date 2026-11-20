@@ -14,7 +14,8 @@ content are private.
    - `contract/<slug>`
 3. Use [Conventional Commits](https://www.conventionalcommits.org/).
 4. Keep the PR small: at most 400 code lines and 20 code files. If it cannot be
-   split, add the `size:large` label and justify it in the PR.
+   split, add the `size:large` label and a `## Size justification` section in
+   the PR body. The check rejects an empty justification.
 5. Open a pull request against `main` and fill the template with commands run
    and output.
 6. Wait for CI and one maintainer approval.
@@ -54,16 +55,12 @@ npm run e2e              # when a journey changed
 
 ## Working with agents
 
-AI-assisted contributions are welcome and held to the same bar.
-
-- Read [`AGENTS.md`](AGENTS.md) first; it is the canonical instruction file.
-- Use [`docs/index.md`](docs/index.md) to find the relevant deep dive.
-- Do not let an agent edit generated files; run `npm run contract`.
-- Do not let an agent read `.env` files or add dependencies casually.
-- Review the diff, tests, and evidence—not the agent's summary.
-- Disclose agent assistance in the PR if it materially shaped the change.
-
-See [`docs/working-with-agents.md`](docs/working-with-agents.md).
+AI-assisted contributions are welcome and held to the same bar. Read
+[`AGENTS.md`](AGENTS.md) and
+[`docs/working-with-agents.md`](docs/working-with-agents.md); use
+[`docs/index.md`](docs/index.md) for deep dives. Review the diff, tests, and
+evidence—not the agent's summary—and disclose material agent assistance in the
+PR.
 
 ## Contract changes
 
