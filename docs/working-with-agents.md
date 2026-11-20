@@ -75,6 +75,8 @@ Do not use emphasis (“IMPORTANT”, all caps) as a substitute for enforcement.
 - ≤400 code lines and ≤20 code files (`pr-size` check).
 - `size:large` label only with a written justification.
 - One approval, CODEOWNERS review, and all required checks.
+- Required checks include `ci-success`, `pr-size`, `pr-title`,
+  `contract-breaking`, `security-secrets`, and `security-dependencies`.
 - Squash merge only; no force push; no direct `main` pushes.
 
 ## Metrics and evals
