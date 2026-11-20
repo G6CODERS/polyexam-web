@@ -47,6 +47,7 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 | Tests/fixtures         | `docs/testing.md`                                               |
 | Security/auth/cache    | `docs/security-model.md`                                        |
 | Workflow/PR/agents     | `CONTRIBUTING.md`, `docs/working-with-agents.md`                |
+| Skills/MCP             | `docs/skills.md`, `opencode.jsonc`                              |
 | Next.js APIs           | `docs/nextjs.md` → `node_modules/next/dist/docs/`               |
 
 ## Map

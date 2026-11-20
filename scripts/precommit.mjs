@@ -75,6 +75,7 @@ if (largeFiles.length > 0) {
 
 const prettierFiles = staged.filter(
   (file) =>
+    !file.startsWith('.agents/') &&
     !file.startsWith('public/') &&
     !file.startsWith('src/lib/api/generated') &&
     !file.startsWith('src/lib/api/model/') &&
@@ -98,6 +99,7 @@ if (prettierFiles.length > 0) {
 
 const eslintFiles = staged.filter(
   (file) =>
+    !file.startsWith('.agents/') &&
     !file.startsWith('public/') &&
     !file.startsWith('src/lib/api/generated') &&
     !file.startsWith('src/lib/api/model/') &&

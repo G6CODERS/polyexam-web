@@ -59,6 +59,10 @@ describe('guardrail scripts', () => {
     );
   });
 
+  it('confirms project skills come from trusted sources', () => {
+    expect(run('scripts/check-skills.mjs')).toContain('check:skills passed');
+  });
+
   it('blocks an env file in pre-commit', () => {
     const directory = mkdtempSync(join(tmpdir(), 'polyexam-env-'));
 

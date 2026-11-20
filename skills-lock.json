@@ -1,0 +1,69 @@
+{
+  "version": 2,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c",
+      "installMode": "copy"
+    },
+    "next-bundle-optimizer": {
+      "source": "vercel/next.js",
+      "commit": "59164d1b22472a01efdc6c2ee26b5284023dc2f0",
+      "sourceType": "github",
+      "skillPath": "skills/next-bundle-optimizer/SKILL.md",
+      "computedHash": "2a2d38e9ba5476f6eef7a86cc1531801b454fdcd5ee8b96745973e01b5d25397",
+      "installMode": "copy"
+    },
+    "next-cache-components-optimizer": {
+      "source": "vercel/next.js",
+      "commit": "59164d1b22472a01efdc6c2ee26b5284023dc2f0",
+      "sourceType": "github",
+      "skillPath": "skills/next-cache-components-optimizer/SKILL.md",
+      "computedHash": "97a5b125e85aff3ebe90626b887cf016f4de33c01b479a42758bd57fe233db4c",
+      "installMode": "copy"
+    },
+    "next-dev-loop": {
+      "source": "vercel/next.js",
+      "commit": "59164d1b22472a01efdc6c2ee26b5284023dc2f0",
+      "sourceType": "github",
+      "skillPath": "skills/next-dev-loop/SKILL.md",
+      "computedHash": "78ebafaabaa8fd170da34957943f5845436f66c04daf85a93fc759f38a50a4ca",
+      "installMode": "copy"
+    },
+    "next-partial-prefetching-optimizer": {
+      "source": "vercel/next.js",
+      "commit": "59164d1b22472a01efdc6c2ee26b5284023dc2f0",
+      "sourceType": "github",
+      "skillPath": "skills/next-partial-prefetching-optimizer/SKILL.md",
+      "computedHash": "c14905fe96b7cae2af2d359edbfa6f07cc1fae5ff94709ed58092834677dc24d",
+      "installMode": "copy"
+    },
+    "playwright-cli": {
+      "source": "microsoft/playwright-cli",
+      "commit": "c872a33cec77fa03c28fa7c6d1ad99d15d04ce42",
+      "sourceType": "github",
+      "skillPath": "skills/playwright-cli/SKILL.md",
+      "computedHash": "54c3f1e47b2566ecc3a2c1515823f77f4609edfe8029351924311dafc0d2ba66",
+      "installMode": "copy"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "7991ed4fbecdac23f47c1a40c243e00a212a9e7f3604db93959b3ae11dffe299",
+      "installMode": "copy"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "4f68ae07187fb0d1fb78c88b503d089da4cf5a9d9625d1f2e425b1590bf96d92",
+      "installMode": "copy"
+    }
+  }
+}

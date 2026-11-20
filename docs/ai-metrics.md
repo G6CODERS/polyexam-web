@@ -21,10 +21,10 @@ thing at a time.
 | --------------------- | -------------------------------------------------- |
 | `npm run verify:fast` | 5.64 s                                             |
 | `npm run verify`      | 14.79 s                                            |
-| Vitest                | 6 files, 18 tests                                  |
+| Vitest                | 6 files, 19 tests                                  |
 | Playwright            | 2 tests                                            |
-| `docs:check`          | 44 Markdown files, 46 links, 152 paths, 89 scripts |
-| `AGENTS.md`           | 120 lines                                          |
+| `docs:check`          | 45 Markdown files, 49 links, 162 paths, 94 scripts |
+| `AGENTS.md`           | 121 lines                                          |
 | CI `ci-success`       | required by the active ruleset                     |
 
 ## Notes

@@ -72,7 +72,9 @@ npx playwright install chromium
 ## For AI agents
 
 Read [`AGENTS.md`](AGENTS.md) first, then [`docs/index.md`](docs/index.md) for
-the relevant deep dive. Run `npm run verify` before opening a pull request.
+the relevant deep dive. Project skills and MCP setup are documented in
+[`docs/skills.md`](docs/skills.md). Run `npm run verify` before opening a pull
+request.
 
 ## API contract
 

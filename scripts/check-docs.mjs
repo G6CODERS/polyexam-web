@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ignoredDirectories = new Set([
+  '.agents',
   '.git',
   '.next',
   'coverage',
@@ -65,7 +66,7 @@ for (const file of markdownFiles) {
   }
 
   for (const match of text.matchAll(
-    /`((?:src|docs|contracts|e2e|scripts|public|\.github|\.githooks|\.claude|node_modules)\/[^`\s]+|(?:AGENTS|README|CONTRIBUTING|CLAUDE)\.md|package\.json|opencode\.jsonc|\.mcp\.json|\.aider\.conf\.yml)`/g,
+    /`((?:src|docs|contracts|e2e|scripts|public|\.github|\.githooks|\.claude|\.agents|node_modules)\/[^`\s]+|(?:AGENTS|README|CONTRIBUTING|CLAUDE)\.md|package\.json|opencode\.jsonc|\.mcp\.json|\.aider\.conf\.yml)`/g,
   )) {
     const candidate = match[1].replace(/[.,;:]+$/, '');
     if (
