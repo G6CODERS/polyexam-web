@@ -79,6 +79,7 @@ const justificationMatch = body.match(
   /#{2,3}\s+Size justification\s*\n+([\s\S]*?)(?=\n#{1,3}\s|$)/i,
 );
 const justification = (justificationMatch?.[1] ?? '')
+  .replace(/<!--[\s\S]*?-->/g, ' ')
   .replace(/\s+/g, ' ')
   .trim();
 

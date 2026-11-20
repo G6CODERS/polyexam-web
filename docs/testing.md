@@ -42,8 +42,14 @@ npm run e2e -- e2e/smoke.spec.ts         # one spec
 - Do not test generated code; test the contract and the app boundary.
 - Loading, empty, error, and disabled states are behavior; test them.
 
+## Local e2e
+
+Playwright reuses an existing server on port 3000 outside CI. Stop any stray
+`next dev`/`next start` before running `npm run e2e`, or set
+`PLAYWRIGHT_BASE_URL`. CI never reuses a server.
+
 ## CI
 
-`npm run verify` is the local gate and includes format, docs, lint, typecheck,
-tests, and build. CI adds contract and e2e checks plus the security workflows.
-A red check is the source of truth, not a local claim.
+`npm run verify` is the local gate and includes format, docs, policy checks,
+lint, typecheck, tests, and build. CI adds contract and e2e checks plus the
+security workflows. A red check is the source of truth, not a local claim.

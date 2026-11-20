@@ -11,5 +11,7 @@ if (existsSync('.env.local')) {
 console.log('');
 console.log('Next steps:');
 console.log('  npm run dev      # start the app');
-console.log('  npm run verify   # lint, typecheck, test, build');
+console.log(
+  '  npm run verify   # format, docs, policy, lint, typecheck, test, build',
+);
 console.log('  npm run doctor   # check the local environment');

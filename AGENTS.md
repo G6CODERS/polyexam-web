@@ -25,7 +25,7 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 
 - Install: `npm ci` (first run: `npm run setup`)
 - Dev: `npm run dev`
-- Verify: `npm run verify` (format + docs + lint + typecheck + test + build)
+- Verify: `npm run verify` (format + docs + policy checks + lint + typecheck + test + build)
 - Fast: `npm run verify:fast`
 - Full: `npm run verify:full`
 - One test: `npm test -- src/lib/contract.test.ts`

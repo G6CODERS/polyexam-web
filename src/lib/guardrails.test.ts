@@ -49,6 +49,16 @@ describe('guardrail scripts', () => {
     expect(run('scripts/check-docs.mjs')).toContain('docs:check passed');
   });
 
+  it('matches the MSW worker to the installed package', () => {
+    expect(run('scripts/check-msw-worker.mjs')).toContain('MSW worker matches');
+  });
+
+  it('confirms no env files are tracked', () => {
+    expect(run('scripts/check-env-files.mjs')).toContain(
+      'No disallowed env files',
+    );
+  });
+
   it('blocks an env file in pre-commit', () => {
     const directory = mkdtempSync(join(tmpdir(), 'polyexam-env-'));
 
@@ -106,6 +116,11 @@ describe('guardrail scripts', () => {
         });
 
       expect(() => runSize('No justification.')).toThrow();
+      expect(() =>
+        runSize(
+          '## Size justification\n\n<!-- Required only if over the limit. Explain why the change cannot be split. -->\n',
+        ),
+      ).toThrow();
       expect(
         runSize(
           '## Size justification\n\nThis is a one-time generated migration that cannot be split safely.\n',

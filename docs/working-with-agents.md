@@ -79,8 +79,10 @@ Do not use emphasis (“IMPORTANT”, all caps) as a substitute for enforcement.
 - One approval, CODEOWNERS review, and all required checks.
 - Required checks include `ci-success`, `pr-size`, `pr-title`,
   `contract-breaking`, `security-secrets`, and `security-dependencies`.
-- The ruleset protects the default branch. Stacked/feature branches rely on
-  local hooks and the no-force-push review policy until they merge.
+- The main ruleset protects the default branch. A second ruleset protects the
+  current `chore/ai-friendly-*` stacked bases so those PRs also require checks
+  and approval. Future stacks should add the same protection or merge through
+  `main`.
 - Squash merge only; no force push; no direct `main` pushes.
 
 ## Metrics and evals

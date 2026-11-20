@@ -27,8 +27,10 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: npm run check:env
       - run: npm run format:check
       - run: npm run docs:check
+      - run: npm run check:msw
       - run: npm run lint
 
   web-typecheck:

@@ -50,8 +50,8 @@ npm run lint             # ESLint (zero warnings)
 npm run typecheck        # TypeScript check
 npm run test             # Vitest
 npm run test:watch       # Vitest watch
-npm run verify           # format + docs + lint + typecheck + test + build
-npm run verify:fast      # format + docs + lint + typecheck + test
+npm run verify           # format + docs + policy checks + lint + typecheck + test + build
+npm run verify:fast      # format + docs + policy checks + lint + typecheck + test
 npm run verify:full      # verify + contract check + e2e
 npm run contract         # regenerate client + MSW from the OpenAPI contract
 npm run contract:check   # regenerate and fail on generated drift
@@ -87,8 +87,8 @@ contracts/public.openapi.yaml
   private backend.
 - `npm run contract` generates `src/lib/api/generated.ts` and MSW handlers.
 - Contract changes require review from both frontend and backend maintainers.
-- Breaking changes require an explicit label/approval and a deprecation or
-  version decision.
+- Breaking changes are blocked by CI. They need a version/deprecation plan and
+  an explicit maintainer ruleset change; a label alone is not a bypass.
 
 See [docs/contract.md](docs/contract.md).
 
