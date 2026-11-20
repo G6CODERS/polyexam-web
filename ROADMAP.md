@@ -8,6 +8,7 @@ and content operations are tracked privately.
 - [x] Public Next.js 16 repository
 - [x] Public OpenAPI contract + generated client + MSW
 - [x] CI, contract lint, security scan, contribution rules
+- [x] AI-friendly collaboration rails (AGENTS.md, docs index, verification)
 - [ ] Design tokens and component library
 - [ ] MSW-backed demo of the student shell
 

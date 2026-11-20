@@ -1,0 +1,60 @@
+name: Agent-ready task
+description: A small, well-scoped task suitable for an AI coding agent.
+title: 'chore: '
+labels: ['agent-ready']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write this issue as a prompt. Include enough context to start without guessing.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: One paragraph. What should be true when this is done?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and files
+      description: Link docs, routes, components, and known constraints.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Observable, testable outcomes.
+      placeholder: |
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: What must not change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification commands
+      description: Commands the agent must run and report.
+      placeholder: |
+        npm run verify
+        npm test -- src/lib/contract.test.ts
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk and rollback
+      description: What could break? How do we revert?

@@ -1,0 +1,79 @@
+name: Feature request
+description: Propose a user-facing or infrastructure change.
+title: 'feat: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep it small and reviewable. Link an ADR if this changes architecture.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or contributor problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Observable, testable outcomes. One per line.
+      placeholder: |
+        - [ ] A student can see the list of tracks
+        - [ ] Loading, empty, and error states are covered
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Out of scope
+      description: What are we deliberately not doing?
+    validations:
+      required: true
+
+  - type: input
+    id: routes
+    attributes:
+      label: Routes / API operations
+      description: Planned routes or OpenAPI operation IDs, if known.
+      placeholder: '/papers, getPaper, listPapers'
+
+  - type: checkboxes
+    id: states
+    attributes:
+      label: UI states
+      description: Check every state that applies.
+      options:
+        - label: Loading
+        - label: Empty
+        - label: Error
+        - label: Disabled / unauthorized
+        - label: Not applicable
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility notes
+      description: Keyboard, labels, focus, contrast, reduced motion, screen reader.
+
+  - type: textarea
+    id: tests
+    attributes:
+      label: Test plan
+      description: What will prove this works? Include commands if useful.
+
+  - type: textarea
+    id: data
+    attributes:
+      label: Data and fixtures
+      description: Confirm synthetic data only. No real student data or paid content.
+
+  - type: textarea
+    id: agent
+    attributes:
+      label: Agent notes
+      description: Files/areas, commands, and definition of done for an agent.
