@@ -22,9 +22,10 @@ version.
 │   ├── components/           # shared UI (when the design system starts)
 │   ├── lib/
 │   │   ├── api/              # generated Orval client/models/mocks
-│   │   ├── env.ts            # server/client env validation (Phase 2)
+│   │   ├── env.ts            # server env validation
+│   │   ├── server-api.ts     # server-only API client
 │   │   └── contract.test.ts  # contract invariants
-│   └── mocks/                # MSW browser/server wiring (Phase 2)
+│   └── mocks/                # MSW browser/server/provider wiring
 └── .github/                  # CI, issue/PR templates, CODEOWNERS
 ```
 

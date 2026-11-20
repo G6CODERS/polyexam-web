@@ -22,7 +22,7 @@ Server code calls Laravel directly through a server-only client with
 
 ```ts
 import 'server-only';
-import { serverFetch } from '@/lib/api/server';
+import { serverFetch } from '@/lib/server-api';
 
 const response = await serverFetch('/v1/health');
 ```
