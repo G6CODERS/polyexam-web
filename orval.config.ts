@@ -14,7 +14,9 @@ export default defineConfig({
       mock: {
         generators: [{ type: 'msw', useExamples: true }, { type: 'faker' }],
       },
-      clean: true,
+      // Orval owns this directory, but the nested agent instructions are
+      // hand-written and must survive regeneration.
+      clean: ['!**/AGENTS.md'],
     },
   },
 });

@@ -9,26 +9,26 @@ export default function Home() {
           PolyExam v2
         </h1>
         <p className="max-w-xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-          Student web client for past papers, corrections, tutorials, and
-          subscriptions at Polytech Douala.
+          Client web étudiant pour les épreuves passées, corrections, tutoriels
+          et abonnements à Polytech Douala.
         </p>
       </div>
 
       <div className="rounded-2xl border border-zinc-200 bg-white p-6 text-sm leading-6 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">
         <p className="font-medium text-zinc-950 dark:text-zinc-50">
-          Scaffold status
+          État du socle
         </p>
         <p className="mt-2">
-          Collaboration rails are ready. Product screens, authentication, and
-          catalog features are intentionally not built yet. The public API
-          contract lives in{' '}
+          Les rails de collaboration sont prêts. Les écrans produit,
+          l’authentification et le catalogue ne sont volontairement pas encore
+          construits. Le contrat d’API public se trouve dans{' '}
           <code className="rounded bg-zinc-100 px-1.5 py-0.5 dark:bg-zinc-900">
             contracts/public.openapi.yaml
           </code>
           .
         </p>
         <p className="mt-3">
-          The backend and admin panel are private in{' '}
+          Le backend et le panneau d’administration sont privés dans{' '}
           <code className="rounded bg-zinc-100 px-1.5 py-0.5 dark:bg-zinc-900">
             G6CODERS/polyexam-api
           </code>
@@ -41,13 +41,13 @@ export default function Home() {
           className="rounded-full bg-emerald-600 px-5 py-2.5 font-medium text-white transition-colors hover:bg-emerald-700"
           href="https://github.com/G6CODERS/polyexam-web/blob/main/CONTRIBUTING.md"
         >
-          Contributing
+          Contribuer
         </a>
         <a
           className="rounded-full border border-zinc-300 px-5 py-2.5 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-900"
-          href="https://github.com/G6CODERS/polyexam-web/blob/main/docs/architecture.md"
+          href="https://github.com/G6CODERS/polyexam-web/blob/main/docs/index.md"
         >
-          Architecture
+          Documentation
         </a>
       </div>
     </main>

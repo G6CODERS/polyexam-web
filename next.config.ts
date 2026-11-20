@@ -1,7 +1,10 @@
 import type { NextConfig } from 'next';
 
+const mswEnabled =
+  process.env.NODE_ENV === 'development' ||
+  process.env.NEXT_PUBLIC_MSW_ENABLED === 'true';
+
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
@@ -11,6 +14,11 @@ const nextConfig: NextConfig = {
         as: '*.css',
       },
     },
+    resolveAlias: mswEnabled
+      ? undefined
+      : {
+          '@/mocks/provider': './src/mocks/provider-disabled.tsx',
+        },
   },
 };
 

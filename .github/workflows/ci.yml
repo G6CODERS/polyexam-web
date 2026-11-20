@@ -108,7 +108,7 @@ jobs:
       - run: npm run e2e
         env:
           NEXT_PUBLIC_MSW_ENABLED: 'true'
-          PLAYWRIGHT_WEB_SERVER_COMMAND: npm run build && npm run start
+          PLAYWRIGHT_WEB_SERVER_COMMAND: 'npm run build && npm run start'
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v4
