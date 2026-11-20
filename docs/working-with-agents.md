@@ -32,20 +32,41 @@ npm run dev
 
 Local hooks are installed by `npm ci`; they block env files, hand-edited
 generated code, and non-formatted staged files. They can be bypassed with
-`--no-verify`, but CI is the hard gate.
+`--no-verify`, but CI is the hard gate. OpenCode users also get read/shell
+denials from `opencode.jsonc`; Claude Code users get `.env` read denials from
+`.claude/settings.json`. These agent permission files are best-effort local
+guardrails, not a security boundary.
+
+## Project skills
+
+Eight project skills are installed from official vendor repositories:
+
+- Vercel Next.js: `next-dev-loop`, `next-cache-components-optimizer`,
+  `next-partial-prefetching-optimizer`, `next-bundle-optimizer`
+- Vercel Labs: `vercel-react-best-practices`, `web-design-guidelines`
+- Anthropic: `frontend-design`
+- Microsoft: `playwright-cli`
+
+They live in `.agents/skills` and are pinned by `skills-lock.json`. Do not
+hand-write or edit skills; install/update from an allowlisted owner and run
+`npm run check:skills`. See [skills.md](skills.md).
 
 ## Runtime introspection
 
-Next.js 16 exposes `/_next/mcp` from the dev server. `.mcp.json` connects
-`next-devtools-mcp` for routes, errors, logs, and compilation checks.
+Next.js 16 exposes `/_next/mcp` from the dev server. `next-devtools-mcp` is
+configured in:
+
+- `opencode.jsonc` → `mcp.servers.next-devtools` (OpenCode)
+- `.mcp.json` → Claude Code / VS Code
 
 ```bash
 npm run dev
-# then use the next-devtools MCP tools from your agent
+opencode mcp list
+# then use nextjs_index / nextjs_call from your agent
 ```
 
-Optional: use Playwright or `agent-browser` for DOM/console/network inspection
-and PR screenshots.
+Optional: use the `playwright-cli` or `agent-browser` skill for DOM/console/
+network inspection and PR screenshots.
 
 ## How to add a rule
 
@@ -53,7 +74,9 @@ and PR screenshots.
 2. Is it a preference? Put it in `AGENTS.md` or the relevant `docs/` page.
 3. Is it a zero-exception rule? Enforce it in a script, CI job, permission, or
    CODEOWNERS.
-4. Is it a procedure? Add a recipe in `docs/recipes/` or a skill.
+4. Is it a procedure? Add a recipe in `docs/recipes/`, or use an installed
+   project skill. Do not hand-write a skill; source it from an allowlisted
+   vendor and pin it in `skills-lock.json`.
 
 Do not use emphasis (“IMPORTANT”, all caps) as a substitute for enforcement.
 
@@ -71,8 +94,18 @@ Do not use emphasis (“IMPORTANT”, all caps) as a substitute for enforcement.
 
 - Conventional Commits title (`pr-title` check).
 - ≤400 code lines and ≤20 code files (`pr-size` check).
-- `size:large` label only with a written justification.
-- One approval, CODEOWNERS review, and all required checks.
+- `size:large` label only with a non-empty `## Size justification` section in
+  the PR body; the check rejects an empty one.
+- All required checks and resolved review threads; one maintainer is enough to
+  merge. CODEOWNERS still requests reviewers, but review is expected rather
+  than blocking.
+- Required checks include `ci-success`, `pr-size`, `pr-title`,
+  `contract-breaking`, `security-secrets`, and `security-dependencies`.
+- The main ruleset protects the default branch with PR-only, squash-only,
+  strict up-to-date checks, no force pushes, and resolved threads. Temporary
+  stack rulesets protect stacked base branches while a stack is open; remove
+  them after the stack merges. See
+  [ADR 0008](adr/0008-single-maintainer-merge-policy.md).
 - Squash merge only; no force push; no direct `main` pushes.
 
 ## Metrics and evals
@@ -85,3 +118,17 @@ review comments, docs drift, and agent task success.
 Agents must not read `.env` files, force-push, or run destructive git commands.
 Use `opencode.jsonc` permissions when using OpenCode. Report vulnerabilities
 privately via `SECURITY.md`.
+
+## Sources
+
+- [AGENTS.md standard](https://agents.md/)
+- [Claude Code memory and AGENTS.md](https://code.claude.com/docs/en/memory)
+- [OpenAI Codex AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
+- [GitHub Copilot repository instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
+- [Cursor rules](https://cursor.com/docs/context/rules)
+- [OpenCode rules](https://opencode.ai/docs/rules/) and [skills](https://opencode.ai/docs/skills/)
+- [Skills CLI](https://skills.sh/) and [OpenCode MCP servers](https://opencode.ai/docs/mcp-servers/)
+- [Vercel Next.js skills](https://github.com/vercel/next.js/tree/canary/skills)
+- [Vercel Labs agent skills](https://github.com/vercel-labs/agent-skills)
+- [Microsoft Playwright CLI skill](https://github.com/microsoft/playwright-cli)
+- [Vercel: AGENTS.md vs skills](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals)

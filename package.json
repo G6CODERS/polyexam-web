@@ -20,11 +20,16 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "docs:check": "node scripts/check-docs.mjs",
+    "check:msw": "node scripts/check-msw-worker.mjs",
+    "check:env": "node scripts/check-env-files.mjs",
+    "check:skills": "node scripts/check-skills.mjs",
     "doctor": "node scripts/doctor.mjs",
     "setup": "node scripts/setup.mjs",
     "verify": "npm run verify:fast && npm run build",
-    "verify:fast": "npm run format:check && npm run docs:check && npm run lint && npm run typecheck && npm run test",
-    "verify:full": "npm run verify && npm run contract:check && npm run e2e"
+    "verify:fast": "npm run format:check && npm run docs:check && npm run check:msw && npm run check:env && npm run check:skills && npm run lint && npm run typecheck && npm run test",
+    "verify:full": "npm run verify && npm run contract:check && npm run e2e",
+    "prepare": "node scripts/install-hooks.mjs",
+    "hooks:install": "node scripts/install-hooks.mjs"
   },
   "engines": {
     "node": ">=24",
@@ -53,6 +58,7 @@
     "eslint-config-prettier": "^10.1.8",
     "jsdom": "^31.0.1",
     "msw": "^3.0.7",
+    "next-devtools-mcp": "^0.4.0",
     "orval": "^8.48.0",
     "prettier": "^3.10.1",
     "tailwindcss": "4.3.3",

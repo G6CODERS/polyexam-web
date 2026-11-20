@@ -6,3 +6,6 @@ src/lib/api/model/** linguist-generated=true
 public/mockServiceWorker.js linguist-generated=true
 
 package-lock.json linguist-generated=true
+
+# Vendored project skills from official upstream repositories.
+.agents/skills/** linguist-vendored=true

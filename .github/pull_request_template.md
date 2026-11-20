@@ -8,7 +8,10 @@ Closes #
 
 - Code lines changed: <!-- from the pr-size check -->
 - Code files changed:
-- If over the limit: add the `size:large` label and justify it here:
+
+## Size justification
+
+<!-- Required only if over the limit. Explain why the change cannot be split. -->
 
 ## API contract
 

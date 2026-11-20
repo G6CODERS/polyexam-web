@@ -29,3 +29,4 @@ jobs:
         env:
           BASE_REF: origin/${{ github.base_ref }}
           PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+          PR_BODY: ${{ github.event.pull_request.body }}

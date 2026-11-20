@@ -9,6 +9,8 @@ API. It is public by design.
 - Every operation needs `operationId`, `summary`, `description`, `tags`, and examples.
 - Run `npm run contract` after editing; commit `src/lib/api` with the contract.
 - Run `npm run contract:lint` and `npm run contract:check` before opening a PR.
-- Breaking changes need an explicit label/approval and a deprecation or version decision.
+- Breaking changes are blocked by the required `contract-breaking` check. A
+  breaking change needs a version/deprecation plan and an explicit maintainer
+  ruleset change; do not rely on a label alone.
 
 See `docs/contract.md` and `docs/api-client.md`.

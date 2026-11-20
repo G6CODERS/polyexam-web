@@ -19,6 +19,7 @@ Start here. Read only what the task needs; `AGENTS.md` is the always-on layer.
 | You use Next.js APIs                     | [nextjs.md](nextjs.md)                           |
 | You coordinate with backend              | [team-api.md](team-api.md)                       |
 | You work with agents or review agent PRs | [working-with-agents.md](working-with-agents.md) |
+| You use or update project skills / MCP   | [skills.md](skills.md)                           |
 | You want repeatable procedures           | [recipes/](recipes/)                             |
 | You need a durable decision              | [adr/](adr/)                                     |
 | You run agent evals or metrics           | [evals/](evals/), [ai-metrics.md](ai-metrics.md) |

@@ -25,7 +25,7 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 
 - Install: `npm ci` (first run: `npm run setup`)
 - Dev: `npm run dev`
-- Verify: `npm run verify` (format + docs + lint + typecheck + test + build)
+- Verify: `npm run verify` (format + docs + policy checks + lint + typecheck + test + build)
 - Fast: `npm run verify:fast`
 - Full: `npm run verify:full`
 - One test: `npm test -- src/lib/contract.test.ts`
@@ -47,12 +47,13 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 | Tests/fixtures         | `docs/testing.md`                                               |
 | Security/auth/cache    | `docs/security-model.md`                                        |
 | Workflow/PR/agents     | `CONTRIBUTING.md`, `docs/working-with-agents.md`                |
+| Skills/MCP             | `docs/skills.md`, `opencode.jsonc`                              |
 | Next.js APIs           | `docs/nextjs.md` → `node_modules/next/dist/docs/`               |
 
 ## Map
 
 - `src/app/` — routes, layouts, pages, route handlers.
-- `src/components/` — shared UI.
+- `src/components/` — shared UI (planned; use an ADR before building it).
 - `src/lib/` — API client, env, auth, utilities.
 - `src/lib/api/` — **generated** Orval client/models/mocks; never edit.
 - `src/mocks/` — MSW runtime.
@@ -71,8 +72,10 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 - No new runtime dependency without an issue/ADR.
 - Server Components/Actions for data/mutations; Route Handlers for BFF/webhooks.
 - PR-only; no direct `main`; Conventional Commits; no force pushes.
+- Local hooks block env files, hand-edited generated code, and unformatted
+  staged files. Do not bypass with `--no-verify`.
 - Keep PRs reviewable: ≤400 code lines and ≤20 code files. Add `size:large`
-  only with a written justification.
+  only with a `## Size justification` section in the PR body.
 
 ## Conventions
 

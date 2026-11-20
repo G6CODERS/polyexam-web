@@ -50,8 +50,8 @@ npm run lint             # ESLint (zero warnings)
 npm run typecheck        # TypeScript check
 npm run test             # Vitest
 npm run test:watch       # Vitest watch
-npm run verify           # lint + typecheck + test + build
-npm run verify:fast      # lint + typecheck + test
+npm run verify           # format + docs + policy checks + lint + typecheck + test + build
+npm run verify:fast      # format + docs + policy checks + lint + typecheck + test
 npm run verify:full      # verify + contract check + e2e
 npm run contract         # regenerate client + MSW from the OpenAPI contract
 npm run contract:check   # regenerate and fail on generated drift
@@ -60,6 +60,7 @@ npm run e2e              # Playwright (install browsers first)
 npm run format:check     # Prettier check
 npm run docs:check       # docs links, commands, and AGENTS.md budget
 npm run doctor           # diagnose the local environment
+npm run hooks:install    # install .githooks (also runs on npm ci)
 ```
 
 First Playwright run:
@@ -70,12 +71,10 @@ npx playwright install chromium
 
 ## For AI agents
 
-- Read [`AGENTS.md`](AGENTS.md) first.
-- Use [`docs/index.md`](docs/index.md) to find the right deep dive.
-- Run `npm run verify` before opening a pull request.
-- Never edit `src/lib/api/generated*` or `src/lib/api/model/**`; run
-  `npm run contract` instead.
-- Keep changes small and reviewable.
+Read [`AGENTS.md`](AGENTS.md) first, then [`docs/index.md`](docs/index.md) for
+the relevant deep dive. Project skills and MCP setup are documented in
+[`docs/skills.md`](docs/skills.md). Run `npm run verify` before opening a pull
+request.
 
 ## API contract
 
@@ -90,8 +89,8 @@ contracts/public.openapi.yaml
   private backend.
 - `npm run contract` generates `src/lib/api/generated.ts` and MSW handlers.
 - Contract changes require review from both frontend and backend maintainers.
-- Breaking changes require an explicit label/approval and a deprecation or
-  version decision.
+- Breaking changes are blocked by CI. They need a version/deprecation plan and
+  an explicit maintainer ruleset change; a label alone is not a bypass.
 
 See [docs/contract.md](docs/contract.md).
 
