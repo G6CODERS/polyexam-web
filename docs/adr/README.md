@@ -17,3 +17,4 @@ once accepted; supersede with a new ADR instead of rewriting history.
 - [0005 — Caching policy](0005-caching-policy.md)
 - [0006 — Testing strategy](0006-testing-strategy.md)
 - [0007 — Agent-assisted development](0007-agent-assisted-development.md)
+- [0008 — Single-maintainer merge policy](0008-single-maintainer-merge-policy.md)

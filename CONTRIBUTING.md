@@ -18,7 +18,8 @@ content are private.
    the PR body. The check rejects an empty justification.
 5. Open a pull request against `main` and fill the template with commands run
    and output.
-6. Wait for CI and one maintainer approval.
+6. Wait for CI. One maintainer is enough to merge; CODEOWNERS still requests
+   reviewers, but review is expected rather than blocking.
 7. A maintainer squash-merges and deletes the branch.
 
 Maintainers also use pull requests; nobody pushes directly to `main`.

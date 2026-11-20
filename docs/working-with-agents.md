@@ -96,13 +96,16 @@ Do not use emphasis (“IMPORTANT”, all caps) as a substitute for enforcement.
 - ≤400 code lines and ≤20 code files (`pr-size` check).
 - `size:large` label only with a non-empty `## Size justification` section in
   the PR body; the check rejects an empty one.
-- One approval, CODEOWNERS review, and all required checks.
+- All required checks and resolved review threads; one maintainer is enough to
+  merge. CODEOWNERS still requests reviewers, but review is expected rather
+  than blocking.
 - Required checks include `ci-success`, `pr-size`, `pr-title`,
   `contract-breaking`, `security-secrets`, and `security-dependencies`.
-- The main ruleset protects the default branch. A second ruleset protects the
-  current `chore/ai-friendly-*` stacked bases so those PRs also require checks
-  and approval. Future stacks should add the same protection or merge through
-  `main`.
+- The main ruleset protects the default branch with PR-only, squash-only,
+  strict up-to-date checks, no force pushes, and resolved threads. Temporary
+  stack rulesets protect stacked base branches while a stack is open; remove
+  them after the stack merges. See
+  [ADR 0008](adr/0008-single-maintainer-merge-policy.md).
 - Squash merge only; no force push; no direct `main` pushes.
 
 ## Metrics and evals
