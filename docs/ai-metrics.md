@@ -19,8 +19,8 @@ thing at a time.
 
 | Measurement           | Value                                              |
 | --------------------- | -------------------------------------------------- |
-| `npm run verify:fast` | 8.89 s                                             |
-| `npm run verify`      | 13.00 s                                            |
+| `npm run verify:fast` | 5.64 s                                             |
+| `npm run verify`      | 14.79 s                                            |
 | Vitest                | 6 files, 16 tests                                  |
 | Playwright            | 2 tests                                            |
 | `docs:check`          | 44 Markdown files, 46 links, 107 paths, 88 scripts |
