@@ -13,61 +13,57 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import type {
-  Health,
-  Problem
-} from './model';
+import type { Health, Problem } from './model';
 
 export type getHealthResponse200 = {
-  data: Health
-  status: 200
-}
+  data: Health;
+  status: 200;
+};
 
 export type getHealthResponse429 = {
-  data: Problem
-  status: 429
-}
+  data: Problem;
+  status: 429;
+};
 
 export type getHealthResponse503 = {
-  data: Problem
-  status: 503
-}
-
-export type getHealthResponseSuccess = (getHealthResponse200) & {
-  headers: Headers;
-};
-export type getHealthResponseError = (getHealthResponse429 | getHealthResponse503) & {
-  headers: Headers;
+  data: Problem;
+  status: 503;
 };
 
-export type getHealthResponse = (getHealthResponseSuccess | getHealthResponseError)
+export type getHealthResponseSuccess = getHealthResponse200 & {
+  headers: Headers;
+};
+export type getHealthResponseError = (
+  getHealthResponse429 | getHealthResponse503
+) & {
+  headers: Headers;
+};
+
+export type getHealthResponse =
+  getHealthResponseSuccess | getHealthResponseError;
 
 export const getGetHealthUrl = () => {
-
-
-
-
-  return `/v1/health`
-}
+  return `/v1/health`;
+};
 
 /**
  * Lightweight liveness probe used by the frontend, CI, and synthetic monitors.
  * @summary API health
  */
-export const getHealth = async ( options?: RequestInit): Promise<getHealthResponse> => {
-
-  const res = await fetch(getGetHealthUrl(),
-  {
+export const getHealth = async (
+  options?: RequestInit,
+): Promise<getHealthResponse> => {
+  const res = await fetch(getGetHealthUrl(), {
     ...options,
-    method: 'GET'
-
-
-  }
-)
-
+    method: 'GET',
+  });
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text();
 
-  const data: getHealthResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getHealthResponse
-}
+  const data: getHealthResponse['data'] = body ? JSON.parse(body) : {};
+  return {
+    data,
+    status: res.status,
+    headers: res.headers,
+  } as getHealthResponse;
+};

@@ -13,14 +13,15 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import {
-  faker
-} from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
-import type {
-  Health
-} from './model';
+import type { Health } from './model';
 
-
-export const getGetHealthResponseMock = (overrideResponse: Partial<Extract<Health, object>> = {}): Health => ({status: faker.helpers.arrayElement(['ok'] as const), service: faker.string.alpha({length: {min: 10, max: 20}}), version: faker.string.alpha({length: {min: 10, max: 20}}), ...overrideResponse})
-
+export const getGetHealthResponseMock = (
+  overrideResponse: Partial<Extract<Health, object>> = {},
+): Health => ({
+  status: faker.helpers.arrayElement(['ok'] as const),
+  service: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  version: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  ...overrideResponse,
+});

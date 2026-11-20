@@ -15,43 +15,51 @@ CI, security, and contribution rails.
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16 (App Router, Turbopack, Cache Components) |
-| UI | React 19, TypeScript, Tailwind CSS 4 |
-| API client | Orval-generated fetch client from OpenAPI 3.1 |
-| Mocks | MSW generated from the contract |
-| Tests | Vitest + Playwright |
-| Contract lint | Redocly + oasdiff |
-| CI | GitHub Actions |
+| Layer         | Technology                                           |
+| ------------- | ---------------------------------------------------- |
+| Framework     | Next.js 16 (App Router, Turbopack, Cache Components) |
+| UI            | React 19, TypeScript, Tailwind CSS 4                 |
+| API client    | Orval-generated fetch client from OpenAPI 3.1        |
+| Mocks         | MSW generated from the contract                      |
+| Tests         | Vitest + Playwright                                  |
+| Contract lint | Redocly + oasdiff                                    |
+| CI            | GitHub Actions                                       |
 
 ## Quick start
 
-Prerequisites: Node.js 24+ and npm 10+.
+Prerequisites: Node.js 24+ and npm 12+ (see `.nvmrc` and `package.json`).
 
 ```bash
 npm ci
-cp .env.example .env.local
+npm run setup
 npm run dev
 ```
 
 Open <http://localhost:3000>.
 
 The app does not need the private backend for UI work. Generated MSW handlers
-and fixtures are the default development path.
+are checked in; runtime MSW wiring is documented in [`docs/status.md`](docs/status.md)
+and is enabled by default in development.
 
 ## Scripts
 
 ```bash
 npm run dev              # Next.js dev server
 npm run build            # production build
-npm run lint             # ESLint
+npm run lint             # ESLint (zero warnings)
 npm run typecheck        # TypeScript check
 npm run test             # Vitest
 npm run test:watch       # Vitest watch
+npm run verify           # lint + typecheck + test + build
+npm run verify:fast      # lint + typecheck + test
+npm run verify:full      # verify + contract check + e2e
 npm run contract         # regenerate client + MSW from the OpenAPI contract
-npm run contract:check   # regenerate and fail on drift
+npm run contract:check   # regenerate and fail on generated drift
+npm run contract:lint    # Redocly lint
 npm run e2e              # Playwright (install browsers first)
+npm run format:check     # Prettier check
+npm run docs:check       # docs links, commands, and AGENTS.md budget
+npm run doctor           # diagnose the local environment
 ```
 
 First Playwright run:
@@ -59,6 +67,15 @@ First Playwright run:
 ```bash
 npx playwright install chromium
 ```
+
+## For AI agents
+
+- Read [`AGENTS.md`](AGENTS.md) first.
+- Use [`docs/index.md`](docs/index.md) to find the right deep dive.
+- Run `npm run verify` before opening a pull request.
+- Never edit `src/lib/api/generated*` or `src/lib/api/model/**`; run
+  `npm run contract` instead.
+- Keep changes small and reviewable.
 
 ## API contract
 

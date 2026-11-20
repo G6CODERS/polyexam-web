@@ -13,37 +13,39 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import {
-  faker
-} from '@faker-js/faker';
+import { HttpResponse, http } from 'msw';
+import type { HttpResponseResolver, RequestHandlerOptions } from 'msw';
 
-import {
-  HttpResponse,
-  http
-} from 'msw';
-import type {
-  HttpResponseResolver,
-  RequestHandlerOptions
-} from 'msw';
+import type { Health } from './model';
 
-import type {
-  Health
-} from './model';
+export const getGetHealthResponseMock = (
+  overrideResponse: Partial<Extract<Health, object>> = {},
+): Health => ({
+  status: 'ok',
+  service: 'polyexam-api',
+  version: '0.1.0',
+  ...overrideResponse,
+});
 
-
-export const getGetHealthResponseMock = (overrideResponse: Partial<Extract<Health, object>> = {}): Health => ({status: faker.helpers.arrayElement(['ok'] as const), service: faker.string.alpha({length: {min: 10, max: 20}}), version: faker.string.alpha({length: {min: 10, max: 20}}), ...overrideResponse})
-
-
-export const getGetHealthMockHandler = (overrideResponse?: Health | ((info: Parameters<HttpResponseResolver>[0]) => Promise<Health> | Health), options?: RequestHandlerOptions) => {
-  return http.get('*/v1/health', async (info: Parameters<HttpResponseResolver>[0]) => {
-
-
-    return HttpResponse.json(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getGetHealthResponseMock(),
-      { status: 200
-      })
-  }, options)
-}
-export const getPolyExamPublicAPIMock = () => [
-  getGetHealthMockHandler()]
+export const getGetHealthMockHandler = (
+  overrideResponse?:
+    | Health
+    | ((info: Parameters<HttpResponseResolver>[0]) => Promise<Health> | Health),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/v1/health',
+    async (info: Parameters<HttpResponseResolver>[0]) => {
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getGetHealthResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+export const getPolyExamPublicAPIMock = () => [getGetHealthMockHandler()];

@@ -10,7 +10,10 @@ export default defineConfig({
       target: './src/lib/api/generated.ts',
       schemas: './src/lib/api/model',
       client: 'fetch',
-      mock: true,
+      formatter: 'prettier',
+      mock: {
+        generators: [{ type: 'msw', useExamples: true }, { type: 'faker' }],
+      },
       clean: true,
     },
   },
