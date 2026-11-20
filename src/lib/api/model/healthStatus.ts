@@ -14,8 +14,7 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type HealthStatus = typeof HealthStatus[keyof typeof HealthStatus];
-
+export type HealthStatus = (typeof HealthStatus)[keyof typeof HealthStatus];
 
 export const HealthStatus = {
   ok: 'ok',

@@ -50,4 +50,3 @@ npm run contract:check
   browser-initiated BFF operations and webhooks.
 - Do not add product screens in the scaffold phase without an issue/ADR.
 - PR-only workflow; no direct pushes to `main`.
-

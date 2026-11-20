@@ -21,14 +21,14 @@ export default function Home() {
         <p className="mt-2">
           Collaboration rails are ready. Product screens, authentication, and
           catalog features are intentionally not built yet. The public API
-          contract lives in{" "}
+          contract lives in{' '}
           <code className="rounded bg-zinc-100 px-1.5 py-0.5 dark:bg-zinc-900">
             contracts/public.openapi.yaml
           </code>
           .
         </p>
         <p className="mt-3">
-          The backend and admin panel are private in{" "}
+          The backend and admin panel are private in{' '}
           <code className="rounded bg-zinc-100 px-1.5 py-0.5 dark:bg-zinc-900">
             G6CODERS/polyexam-api
           </code>
