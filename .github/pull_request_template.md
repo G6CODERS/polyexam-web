@@ -1,31 +1,52 @@
 ## What changed and why
 
-<!-- Link the issue and explain the problem. -->
+<!-- Link the issue and explain the problem. Keep it one logical change. -->
 
 Closes #
+
+## Size and scope
+
+- Code lines changed: <!-- from the pr-size check -->
+- Code files changed:
+- If over the limit: add the `size:large` label and justify it here:
 
 ## API contract
 
 - Contract changed: Yes / No
-- If yes, link the contract PR and note breaking/additive:
+- If yes, note additive/breaking and link the contract issue/PR:
 - Generated client + MSW updated: Yes / No / N/A
 
-## How it was tested
+## How it was verified
 
 ```text
-
+# Paste the commands you ran and the result summary.
 ```
+
+- [ ] `npm run verify` passes
+- [ ] `npm run contract:check` passes when the contract changed
+- [ ] `npm run docs:check` passes when docs changed
+- [ ] E2E passes when a user journey changed
 
 ## Screenshots
 
 <!-- Remove secrets, personal data, and paid content. -->
 
+## Risk and rollback
+
+<!-- What could break? How do we revert safely? -->
+
+## Agent assistance
+
+<!-- Optional: which agent/tool, and what you reviewed manually. -->
+
 ## Checklist
 
 - [ ] The PR title follows Conventional Commits.
-- [ ] `npm run lint`, `npm run typecheck`, `npm run test`, and `npm run build` pass.
-- [ ] `npm run contract:check` passes when the contract changed.
+- [ ] The PR is small and reviewable, or `size:large` is justified.
+- [ ] Tests were added or updated for behavior changes.
+- [ ] Loading, empty, error, and disabled states are handled.
+- [ ] Accessibility was considered (keyboard, labels, focus, contrast).
 - [ ] No secrets, `.env` files, real student data, or paid PDFs are committed.
-- [ ] Loading, empty, and error states are handled.
-- [ ] Accessibility was considered (keyboard, labels, contrast).
-- [ ] I did not push directly to `main`.
+- [ ] Generated files were produced by `npm run contract`, not edited by hand.
+- [ ] Docs/status were updated when behavior or commands changed.
+- [ ] I did not push directly to `main` or force-push.

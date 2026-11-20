@@ -14,6 +14,7 @@ the same PR that changes the status.
 | Design system    | Tokens not finalized    | Tokens + primitives                   | `docs/design-system.md`         |
 | Cache Components | Enabled in config       | Public-catalog caching rules          | `docs/architecture.md`          |
 | E2E              | Smoke test              | Critical journeys                     | `e2e/`                          |
+| Language         | English scaffold copy   | French product copy + `lang="fr"`     | `docs/ui-conventions.md`        |
 | Agent tooling    | `AGENTS.md` + docs      | MCP, hooks, evals, metrics            | `docs/working-with-agents.md`   |
 | PR enforcement   | Ruleset + CI checks     | Size/title + local hooks              | `docs/working-with-agents.md`   |
 

@@ -19,7 +19,8 @@
 ## Backend team provides
 
 - Versioned API at `/api/v1`.
-- `contracts.lock` pin and contract-aware tests.
+- `contracts.lock` pin and contract-aware tests. The lock file is backend-owned
+  and is not part of this public repository.
 - Filament admin and back-office workflows.
 - Staging/preview API and test personas.
 - `#api-help` support and contract review.
@@ -39,3 +40,4 @@
 - Backend deploys backward-compatible changes first; frontend deploys after.
 - No admin/internal endpoints in the public contract.
 - Decisions live in an ADR, contract changelog, or PR description.
+- Agent-assisted PRs include verification evidence and follow the size policy.

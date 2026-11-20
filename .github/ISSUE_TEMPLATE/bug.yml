@@ -1,0 +1,54 @@
+name: Bug report
+description: Report behavior that does not match the contract or accepted design.
+title: 'fix: '
+labels: ['bug']
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, route, browser, OS, and request ID if available.
+      placeholder: 'main@abc123, /papers, Chromium 140, Linux'
+
+  - type: input
+    id: contract
+    attributes:
+      label: Contract commit
+      description: Contract SHA if the bug involves the API.
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or logs
+      description: Remove secrets, personal data, and paid content before posting.
+
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression test
+      description: What test should fail before the fix?

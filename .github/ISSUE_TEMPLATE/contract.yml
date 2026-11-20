@@ -1,0 +1,60 @@
+name: Contract change
+description: Propose an additive or breaking change to the public API.
+title: 'contract: '
+labels: ['contract']
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: Change
+      description: What operation/schema changes, and why?
+    validations:
+      required: true
+
+  - type: input
+    id: operations
+    attributes:
+      label: Operation IDs
+      description: List the operation IDs involved.
+
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Compatibility
+      options:
+        - Additive
+        - Breaking
+        - Deprecation
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Synthetic request/response examples. No real data or secrets.
+    validations:
+      required: true
+
+  - type: input
+    id: backend
+    attributes:
+      label: Backend PR
+      description: Link the private backend implementation/PR if available.
+
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration / deprecation
+      description: How do clients migrate? What is the timeline for a break?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Operation IDs are stable
+        - label: No admin/internal endpoints
+        - label: No secrets or real data
+        - label: Generated client/mocks will be committed
+        - label: Frontend and backend reviewers requested
