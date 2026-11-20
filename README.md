@@ -60,6 +60,7 @@ npm run e2e              # Playwright (install browsers first)
 npm run format:check     # Prettier check
 npm run docs:check       # docs links, commands, and AGENTS.md budget
 npm run doctor           # diagnose the local environment
+npm run hooks:install    # install .githooks (also runs on npm ci)
 ```
 
 First Playwright run:

@@ -71,6 +71,8 @@ Node 24 (`.nvmrc`), npm 12 (`packageManager`).
 - No new runtime dependency without an issue/ADR.
 - Server Components/Actions for data/mutations; Route Handlers for BFF/webhooks.
 - PR-only; no direct `main`; Conventional Commits; no force pushes.
+- Local hooks block env files, hand-edited generated code, and unformatted
+  staged files. Do not bypass with `--no-verify`.
 - Keep PRs reviewable: ≤400 code lines and ≤20 code files. Add `size:large`
   only with a written justification.
 

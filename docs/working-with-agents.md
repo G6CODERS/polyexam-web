@@ -32,7 +32,9 @@ npm run dev
 
 Local hooks are installed by `npm ci`; they block env files, hand-edited
 generated code, and non-formatted staged files. They can be bypassed with
-`--no-verify`, but CI is the hard gate.
+`--no-verify`, but CI is the hard gate. OpenCode users also get read/shell
+denials from `opencode.jsonc`; Claude Code users get `.env` read denials from
+`.claude/settings.json`.
 
 ## Runtime introspection
 

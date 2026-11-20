@@ -1,0 +1,116 @@
+#!/usr/bin/env node
+import { execFileSync } from 'node:child_process';
+import { statSync } from 'node:fs';
+
+const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+
+const staged = execFileSync(
+  'git',
+  ['diff', '--cached', '--name-only', '--diff-filter=ACMR'],
+  { encoding: 'utf8' },
+)
+  .trim()
+  .split('\n')
+  .filter(Boolean);
+
+if (staged.length === 0) process.exit(0);
+
+const errors = [];
+const contractChanged = staged.includes('contracts/public.openapi.yaml');
+const generated = staged.filter(
+  (file) =>
+    file.startsWith('src/lib/api/generated') ||
+    file.startsWith('src/lib/api/model/'),
+);
+
+if (generated.length > 0 && !contractChanged) {
+  errors.push(
+    [
+      'Generated files are staged without contracts/public.openapi.yaml:',
+      ...generated.map((file) => `  ${file}`),
+      'Run `npm run contract` and commit the contract change with the output.',
+    ].join('\n'),
+  );
+}
+
+const envFiles = staged.filter(
+  (file) => /(^|\/)\.env(\.|$)/.test(file) && !file.endsWith('.env.example'),
+);
+
+if (envFiles.length > 0) {
+  errors.push(
+    [
+      'Refusing to commit env files:',
+      ...envFiles.map((file) => `  ${file}`),
+    ].join('\n'),
+  );
+}
+
+const largeFiles = staged.filter((file) => {
+  try {
+    return statSync(file).size > 1_000_000;
+  } catch {
+    return false;
+  }
+});
+
+if (largeFiles.length > 0) {
+  errors.push(
+    [
+      'Refusing to commit files larger than 1 MB:',
+      ...largeFiles.map((file) => `  ${file}`),
+    ].join('\n'),
+  );
+}
+
+const prettierFiles = staged.filter(
+  (file) =>
+    !file.startsWith('public/') &&
+    !file.startsWith('src/lib/api/generated') &&
+    !file.startsWith('src/lib/api/model/') &&
+    file !== 'package-lock.json' &&
+    /\.(md|mdx|json|ya?ml|ts|tsx|js|jsx|mjs|cjs|css)$/.test(file),
+);
+
+if (prettierFiles.length > 0) {
+  try {
+    execFileSync(
+      npx,
+      ['--no-install', 'prettier', '--check', ...prettierFiles],
+      {
+        stdio: 'inherit',
+      },
+    );
+  } catch {
+    errors.push('Prettier rejected staged files. Run `npm run format`.');
+  }
+}
+
+const eslintFiles = staged.filter(
+  (file) =>
+    !file.startsWith('public/') &&
+    !file.startsWith('src/lib/api/generated') &&
+    !file.startsWith('src/lib/api/model/') &&
+    /\.(ts|tsx|js|jsx|mjs|cjs)$/.test(file),
+);
+
+if (eslintFiles.length > 0) {
+  try {
+    execFileSync(
+      npx,
+      ['--no-install', 'eslint', '--max-warnings=0', ...eslintFiles],
+      { stdio: 'inherit' },
+    );
+  } catch {
+    errors.push('ESLint rejected staged files. Run `npm run lint:fix`.');
+  }
+}
+
+if (errors.length > 0) {
+  console.error(
+    ['Commit blocked:', '', ...errors.map((error) => `- ${error}`)].join('\n'),
+  );
+  process.exit(1);
+}
+
+console.log('Pre-commit checks passed.');

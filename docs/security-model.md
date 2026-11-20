@@ -58,6 +58,8 @@ Rules:
 - Do not read `.env` files, even to debug.
 - Do not run destructive git commands or force-push.
 - Use `npm run doctor` and `npm run verify` for diagnosis.
+- Local hooks and `opencode.jsonc` enforce the common cases; CI and branch
+  protection are the hard gate.
 - Report vulnerabilities privately via the organization policy.
 
 See `architecture.md`, `api-client.md`, and `SECURITY.md`.
